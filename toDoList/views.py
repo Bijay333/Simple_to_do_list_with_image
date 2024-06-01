@@ -2,4 +2,5 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello World!")
+    name = "John"
+    return HttpResponse(f"<h1>Hello, {name}!</h1>")
