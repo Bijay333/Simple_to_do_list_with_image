@@ -3,9 +3,12 @@ from django.shortcuts import render, HttpResponse
 # Create your views here.
 def home(request):
     context = {
-        "name" : "John",
-        "age" : 28,
-    }
+        'persons' : [{"name" : "John", "age" : 28},
+                     {"name" : "Olivia", "age" : 21},
+                     {"name" : "Peter", "age" : 32},
+                     {"name" : "Sam", "age" : 16},
+                     ],
+        }
     return render(request, 'index.html', context)
 
 def contact(request):

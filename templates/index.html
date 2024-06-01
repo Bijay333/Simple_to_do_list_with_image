@@ -1,14 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>This the home page.</h1>
+{% extends "base.html" %}
+
+{% block title %}
+HomePage
+{% endblock title %}
+
+{% block body %}
+
+{% comment %}
     <h1>Contents are under construction.</h1>
-    <h1>My name is {{name}}</h1>
-    <h1>And the age is {{age}}</h1>
-</body>
-</html>
+{% endcomment %}
+
+<h1>This the home page.</h1>
+    <table border="1">
+        <tr>
+            <th>S.N.</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        {%for person in persons%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{person.name}}</td>
+            <td>
+                {% if person.age < 14 %}
+                    {{person.age}} Kids
+                {% elif person.age > 14 and person.age < 19 %}
+                {{person.age}} Teens
+                
+                {% elif person.age > 18 and person.age < 31 %}
+                {{person.age}} Adults
+                
+                {% elif person.age > 30 and person.age < 51 %}
+                {{person.age}} Matured Adults
+                
+                {% else %}
+                {{person.age}} Elderly
+                
+                {% endif %}
+        </td>
+        </tr>
+        {%endfor%}
+    </table>
+{% endblock body %}
