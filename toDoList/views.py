@@ -2,7 +2,11 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    context = {
+        "name" : "John",
+        "age" : 28,
+    }
+    return render(request, 'index.html', context)
 
 def contact(request):
     phone = 87451100
