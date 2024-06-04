@@ -16,10 +16,15 @@ def home(request):
             task_description = task_description,
         )
         
-        
         return redirect('/tasklist/')
     
-    return render(request, 'index.html')
+    queryset = Things_to_do.objects.all()
+    
+    context = {
+        "tasks" : queryset
+    }
+
+    return render(request, 'index.html', context)
 
 def contact(request):
     phone = 87451100
