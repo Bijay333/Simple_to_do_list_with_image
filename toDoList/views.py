@@ -32,3 +32,27 @@ def delete(request, pk):
     queryset.delete()
     return redirect('/tasklist/')
 
+def update(request, pk):
+    queryset = Things_to_do.objects.get(pk=pk)
+    
+    if request.method == "POST":
+        data = request.POST
+        task_image = request.FILES.get('task_image')
+        
+        task_name = data.get('task_name')
+        task_description = data.get('task_description')
+        
+        queryset.task_name = task_name
+        queryset.task_description = task_description
+        
+        if task_image:
+            queryset.task_image = task_image
+        
+        queryset.save()
+        
+        return redirect('/tasklist/')
+    
+    context ={
+        'tasks' : queryset
+    }
+    return render(request, 'update.html', context)
