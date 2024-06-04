@@ -1,15 +1,25 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+from toDoList.models import *
 
 # Create your views here.
 def home(request):
-    context = {
-        'persons' : [{"name" : "John", "age" : 28},
-                     {"name" : "Olivia", "age" : 21},
-                     {"name" : "Peter", "age" : 32},
-                     {"name" : "Sam", "age" : 16},
-                     ],
-        }
-    return render(request, 'index.html', context)
+    if request.method == "POST":
+        data = request.POST
+        task_image = request.FILES.get('task_image')
+        
+        task_name = data.get('task_name')
+        task_description = data.get('task_description')
+        
+        Things_to_do.objects.create(
+            task_image = task_image,
+            task_name = task_name,
+            task_description = task_description,
+        )
+        
+        
+        return redirect('/tasklist/')
+    
+    return render(request, 'index.html')
 
 def contact(request):
     phone = 87451100
