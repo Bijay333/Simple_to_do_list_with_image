@@ -39,6 +39,7 @@ HomePage
       <th scope="col">Task Name</th>
       <th scope="col">Task Description</th>
       <th scope="col">Task Image</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -48,6 +49,9 @@ HomePage
       <td>{{task.task_name}}</td>
       <td>{{task.task_description}}</td>
       <td>{{task.task_image}}</td>
+      <td>
+        <a href="delete-task/{{task.id}}" type="button" class = "btn btn-danger">Delete</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

@@ -26,6 +26,9 @@ def home(request):
 
     return render(request, 'index.html', context)
 
-def contact(request):
-    phone = 87451100
-    return HttpResponse(f"<h1>Contact Us: {phone}</h1>")
+def delete(request, pk):
+    queryset = Things_to_do.objects.get(pk=pk)
+    
+    queryset.delete()
+    return redirect('/tasklist/')
+
