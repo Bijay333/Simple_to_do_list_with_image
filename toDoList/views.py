@@ -20,6 +20,9 @@ def home(request):
     
     queryset = Things_to_do.objects.all()
     
+    if request.GET.get('search'):
+        queryset = queryset.filter(task_name__icontains = request.GET.get('search'))
+    
     context = {
         "tasks" : queryset
     }
